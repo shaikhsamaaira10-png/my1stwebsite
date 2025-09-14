@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Technika Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #001f3f, #0074D9);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5em;
+      color: #FFD700;
+    }
+    .quiz-container {
+      background: rgba(0,0,0,0.6);
+      border-radius: 15px;
+      padding: 20px;
+      width: 60%;
+      margin: 20px auto;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+    }
+    .question {
+      font-size: 1.3em;
+      margin-bottom: 15px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      background: #FF851B;
+      color: white;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #FF4136;
+    }
+    #result {
+      font-size: 1.5em;
+      margin-top: 20px;
+      color: #2ECC40;
+    }
+  </style>
+</head>
+<body>
+  <h1>Technika Quiz Event</h1>
+  <div class="quiz-container">
+    <div id="quiz"></div>
+    <button onclick="submitQuiz()">Submit</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "1. Who is known as the father of computers?",
+        options: ["Charles Babbage", "Alan Turing", "Bill Gates", "Steve Jobs"],
+        answer: "Charles Babbage"
+      },
+      {
+        question: "2. HTML stands for?",
+        options: [
+          "HighText Machine Language",
+          "HyperText and Links Markup Language",
+          "HyperText Markup Language",
+          "Home Tool Markup Language"
+        ],
+        answer: "HyperText Markup Language"
+      },
+      {
+        question: "3. Which planet is known as the Red Planet?",
+        options: ["Earth", "Venus", "Mars", "Jupiter"],
+        answer: "Mars"
+      },
+      {
+        question: "4. In binary, what does 101 equal in decimal?",
+        options: ["5", "10", "101", "21"],
+        answer: "5"
+      }
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+
+    function loadQuiz() {
+      quizData.forEach((q, index) => {
+        const div = document.createElement("div");
+        div.classList.add("question-block");
+        div.innerHTML = `
+          <div class="question">${q.question}</div>
+          <div class="options">
+            ${q.options.map(opt => `
+              <label>
+                <input type="radio" name="q${index}" value="${opt}"> ${opt}
+              </label>
+            `).join("")}
+          </div>
+        `;
+        quizContainer.appendChild(div);
+      });
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      quizData.forEach((q, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        if (selected && selected.value === q.answer) {
+          score++;
+        }
+      });
+      document.getElementById("result").innerText =
+        `🎉 You scored ${score} out of ${quizData.length}!`;
+    }
+
+    loadQuiz();
+  </script>
+</body>
+</html>

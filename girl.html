@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Where Am I?</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4fff4;
+      padding: 40px;
+      color: #333;
+    }
+    .riddle {
+      margin-bottom: 30px;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 18px;
+      width: 300px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="riddle">
+    <p>ना कोई घंटी, ना कोई क्लास,<br>
+    फिर भी यहाँ चलता है ज्ञान का पास।<br>
+    हर पेड़, हर छाँव कुछ कहती है,<br>
+    हर हवा यहाँ कुछ सिखाती है।<br><br>
+
+    मिट्टी में सपने उगते हैं,<br>
+    हँसी के फूल रोज़ महकते हैं।<br>
+    कभी चुप्पी, तो कभी बातों की रेल,<br>
+    कभी किताबें, कभी चाय का मेल।<br><br>
+
+    ना बेंच की पाबंदी, ना डेस्क की जेल,<br>
+    यहाँ खुलते हैं दिल, ना होते हैं फेल।<br>
+    इसे बाग़ कहो या मंदिर-ए-सुकून,<br>
+   
+    तो बोलो ज़रा, ये जगह कौन सी है?<br>
+    जहाँ ज़िंदगी खुद एक कहानी सी है?
+    </p>
+  </div>
+
+  <!-- Input for the answer -->
+  <input type="text" id="answer" placeholder="Type your answer here...">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+      if (userAnswer === "gurukul") {
+        window.location.href = "correct.html";  // Redirect to success page
+      } else {
+        window.location.href = "wrong.html";    // Redirect to failure page
+      }
+    }
+  </script>
+
+</body>
+</html>
